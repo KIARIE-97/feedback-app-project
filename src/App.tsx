@@ -23,12 +23,10 @@ function App() {
 
   return (
 		<>
-			<div className="max-w-xl mx-auto p-4 font-sans">
-				<h1 className="text-2xl font-bold mb-4 text-blue-700">
-					Feedback Collector App
-				</h1>
-				<form onSubmit={handleSubmit} className="mb-6">
-					<label className="block mb-2">
+			<h1>Feedback Collector App</h1>
+			<div className="container">
+				<form onSubmit={handleSubmit} className="feedback-form">
+					<label>
 						Name:
 						<input
 							className="w-full p-2 border rounded mt-1"
@@ -37,10 +35,10 @@ function App() {
 							required
 						/>
 					</label>
-					<label className="block mb-2">
+					<label>
 						Message:
 						<textarea
-							className="w-full p-2 border rounded mt-1"
+							className="textarea"
 							rows={4}
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
@@ -55,13 +53,24 @@ function App() {
 					</button>
 				</form>
 
-				<div>
-					{feedbacks.map((fb, index) => (
-						<div key={index} className="border-b py-2">
-							<strong>{fb.name}</strong>
-							<p>{fb.message}</p>
-						</div>
-					))}
+				<div className="feedback-list">
+					<h2>Feedbacks:</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Message</th>
+							</tr>
+						</thead>
+						<tbody>
+							{feedbacks.map((fb, index) => (
+								<tr key={index}>
+									<td>{fb.name}</td>
+									<td>{fb.message}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</>
